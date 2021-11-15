@@ -1,18 +1,20 @@
 import React from 'react';
-import {SafeAreaView, ScrollView, Text, Button} from 'react-native';
+import {SafeAreaView, ScrollView, Button} from 'react-native';
 
-import {RECIPE_URL} from '../../utils/urls';
+import {ADD_RECIPE_URL} from '../../utils/urls';
 
-const Home = ({navigation}) => (
-  <SafeAreaView>
-    <ScrollView contentInsetAdjustmentBehavior="automatic">
-      <Text>¡Hola mundo desde la pantalla Home!</Text>
-      <Button
-        title="Ir a receta"
-        onPress={() => navigation.navigate(RECIPE_URL)}
-      />
-    </ScrollView>
-  </SafeAreaView>
-);
+const Home = ({navigation}) => {
+  return (
+    <SafeAreaView>
+      <ScrollView contentInsetAdjustmentBehavior="automatic">
+        <Button
+          title="Add recipe"
+          accessibilityLabel="Add recipe button"
+          onPress={() => navigation.navigate(ADD_RECIPE_URL)}
+        />
+      </ScrollView>
+    </SafeAreaView>
+  );
+};
 
 export default Home;
