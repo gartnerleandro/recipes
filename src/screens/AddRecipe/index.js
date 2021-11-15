@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import {SafeAreaView, ScrollView, TextInput, Button} from 'react-native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import styles from './styles';
 
@@ -8,8 +9,11 @@ const AddRecipe = ({navigation}) => {
   const [description, setDescription] = useState('');
 
   const onSave = () => {
-    // TODO save info on Async Storage
-    navigation.goBack();
+    const key = `${title.trim().replace(' ', '-')}`;
+
+    AsyncStorage.setItem(key, JSON.stringify({title, description})).then(() => {
+      navigation.goBack();
+    });
   };
 
   return (
