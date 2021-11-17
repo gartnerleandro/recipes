@@ -1,26 +1,16 @@
 import React, {useEffect, useState} from 'react';
 import {
   SafeAreaView,
-  Button,
   FlatList,
-  View,
   Text,
   RefreshControl,
+  TouchableOpacity,
 } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-import {ADD_RECIPE_URL} from '../../utils/urls';
+import {RECIPE_URL, ADD_RECIPE_URL} from '../../utils/urls';
 
 import styles from './styles';
-
-const renderCard = ({item}) => {
-  return (
-    <View style={styles.card}>
-      <Text style={styles.cardTitle}>{item.title}</Text>
-      <Text style={styles.cardDescription}>{item.description}</Text>
-    </View>
-  );
-};
 
 const Home = ({navigation}) => {
   const [recipes, setRecipes] = useState([]);
@@ -49,6 +39,17 @@ const Home = ({navigation}) => {
     });
   };
 
+  const renderCard = ({item}) => {
+    return (
+      <TouchableOpacity
+        style={styles.card}
+        onPress={() => navigation.navigate(RECIPE_URL, {recipe: item})}>
+        <Text style={styles.cardTitle}>{item.title}</Text>
+        <Text style={styles.cardDescription}>{item.description}</Text>
+      </TouchableOpacity>
+    );
+  };
+
   return (
     <SafeAreaView style={styles.safeArea}>
       <FlatList
@@ -62,11 +63,12 @@ const Home = ({navigation}) => {
         refreshing={loading}
         showsVerticalScrollIndicator={false}
         ListFooterComponent={() => (
-          <Button
-            title="Add recipe"
+          <TouchableOpacity
             accessibilityLabel="Add recipe button"
-            onPress={() => navigation.navigate(ADD_RECIPE_URL)}
-          />
+            style={styles.button}
+            onPress={() => navigation.navigate(ADD_RECIPE_URL)}>
+            <Text style={styles.buttonText}>Add recipe</Text>
+          </TouchableOpacity>
         )}
       />
     </SafeAreaView>
