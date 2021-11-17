@@ -26,8 +26,22 @@ const styles = StyleSheet.create({
     left: 0,
     right: 0,
   },
-  description: {
+  list: {
     marginTop: 20,
+  },
+  label: {
+    marginHorizontal: 10,
+    marginBottom: 10,
+    fontSize: 20,
+    fontWeight: '600',
+  },
+  ingredient: {
+    marginHorizontal: 10,
+    marginBottom: 5,
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  description: {
     marginHorizontal: 10,
     fontSize: 20,
   },
