@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 import {
   SafeAreaView,
   ScrollView,
@@ -8,24 +8,29 @@ import {
   Text,
   View,
 } from 'react-native';
-import AsyncStorage from '@react-native-async-storage/async-storage';
+
+import useRecipes from '../../hooks/useRecipes';
+import userNewRecipe from '../../hooks/userNewRecipe';
 
 import styles from './styles';
 
-const AddRecipe = ({navigation}) => {
-  const [title, setTitle] = useState('');
-  const [ingredients, setIngredients] = useState(['']);
-  const [description, setDescription] = useState('');
+export default ({navigation}) => {
+  const {addRecipe} = useRecipes();
+  const {
+    title,
+    ingredients,
+    description,
+    onEditTitle,
+    onAddNewIngredient,
+    onRemoveIngredient,
+    onEditIngredient,
+    onEditDescription,
+  } = userNewRecipe();
 
   const onSave = () => {
-    const key = `${title.trim().replace(' ', '-')}`;
-
-    AsyncStorage.setItem(
-      key,
-      JSON.stringify({title, ingredients, description}),
-    ).then(() => {
-      navigation.goBack();
-    });
+    addRecipe({title, ingredients, description}).then(() =>
+      navigation.goBack(),
+    );
   };
 
   return (
@@ -35,7 +40,7 @@ const AddRecipe = ({navigation}) => {
         style={styles.scrollContainer}>
         <TextInput
           style={styles.title}
-          onChangeText={setTitle}
+          onChangeText={onEditTitle}
           value={title}
           placeholder="Recipe title"
         />
@@ -45,39 +50,27 @@ const AddRecipe = ({navigation}) => {
             <View key={idx} style={styles.ingredientElement}>
               <TextInput
                 style={styles.ingredientInput}
-                onChangeText={text => {
-                  const newIngredients = [...ingredients];
-                  newIngredients[idx] = text;
-
-                  setIngredients(newIngredients);
-                }}
+                onChangeText={text => onEditIngredient(idx, text)}
                 value={elem}
                 placeholder="Some ingredient"
               />
               {idx !== 0 && (
                 <TouchableOpacity
                   style={styles.close}
-                  onPress={() => {
-                    const newIngredients = [...ingredients];
-                    newIngredients.splice(idx, 1);
-                    setIngredients(newIngredients);
-                  }}>
+                  onPress={() => onRemoveIngredient(idx)}>
                   <Text>X</Text>
                 </TouchableOpacity>
               )}
             </View>
           ))}
-        <Button
-          title="Add ingredient"
-          onPress={() => setIngredients([...ingredients, ''])}
-        />
+        <Button title="Add ingredient" onPress={onAddNewIngredient} />
         <TextInput
           style={styles.description}
           multiline
           numberOfLines={200}
           editable
           maxLength={900}
-          onChangeText={setDescription}
+          onChangeText={onEditDescription}
           value={description}
           placeholder="Recipe description"
         />
@@ -86,5 +79,3 @@ const AddRecipe = ({navigation}) => {
     </SafeAreaView>
   );
 };
-
-export default AddRecipe;
