@@ -1,4 +1,4 @@
-package com.recipes;
+package com.gartnerleandro.recipes;
 
 import com.facebook.react.ReactActivity;
 
