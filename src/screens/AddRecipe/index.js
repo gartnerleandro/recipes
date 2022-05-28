@@ -10,7 +10,7 @@ import {
 } from 'react-native';
 
 import useRecipes from '../../hooks/useRecipes';
-import userNewRecipe from '../../hooks/userNewRecipe';
+import useNewRecipe from '../../hooks/useNewRecipe';
 
 import styles from './styles';
 
@@ -25,7 +25,7 @@ export default ({navigation}) => {
     onRemoveIngredient,
     onEditIngredient,
     onEditDescription,
-  } = userNewRecipe();
+  } = useNewRecipe();
 
   const onSave = () => {
     addRecipe({title, ingredients, description}).then(() =>
