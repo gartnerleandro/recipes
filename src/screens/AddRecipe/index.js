@@ -13,13 +13,16 @@ import useRecipes from '../../hooks/useRecipes';
 import useNewRecipe from '../../hooks/useNewRecipe';
 
 import styles from './styles';
+import UploadImage from '../../components/UploadImage';
 
 export default ({navigation}) => {
   const {addRecipe} = useRecipes();
   const {
+    image,
     title,
     ingredients,
     description,
+    onEditImage,
     onEditTitle,
     onAddNewIngredient,
     onRemoveIngredient,
@@ -38,6 +41,7 @@ export default ({navigation}) => {
       <ScrollView
         contentInsetAdjustmentBehavior="automatic"
         style={styles.scrollContainer}>
+        <UploadImage image={image} onUpload={onEditImage} />
         <TextInput
           style={styles.title}
           onChangeText={onEditTitle}

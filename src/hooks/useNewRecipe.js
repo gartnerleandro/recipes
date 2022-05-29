@@ -1,9 +1,12 @@
 import {useState} from 'react';
 
 export default () => {
+  const [image, setImage] = useState('');
   const [title, setTitle] = useState('');
   const [ingredients, setIngredients] = useState(['']);
   const [description, setDescription] = useState('');
+
+  const onEditImage = url => setImage(url);
 
   const onEditTitle = text => setTitle(text);
 
@@ -25,9 +28,11 @@ export default () => {
   const onEditDescription = text => setDescription(text);
 
   return {
+    image,
     title,
     ingredients,
     description,
+    onEditImage,
     onEditTitle,
     onAddNewIngredient,
     onRemoveIngredient,
