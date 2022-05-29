@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "167487813915",
+    "project_id": "recipes-d1b82",
+    "storage_bucket": "recipes-d1b82.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:167487813915:android:273c8870828dddd7fcfbbe",
+        "android_client_info": {
+          "package_name": "com.gartnerleandro.recipes"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "167487813915-ll82uqiujas2f46041829chlv0asrtal.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAQs51O_vliyX6fCnizDhGs8lH_QtpJ33s"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "167487813915-ll82uqiujas2f46041829chlv0asrtal.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "167487813915-8q49b3k927cq2m1rbggbatbb2uc5tpgl.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.gartnerleandro.recipes"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
